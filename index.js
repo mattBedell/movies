@@ -19,8 +19,15 @@ app.get('/', (req, res) => {
 // import router for our API
 const apiMoviesRouter = require('./routes/api/movies');
 
+app.use((err, req, res, next) => {
+  console.error(err);
+  res.status(500).send('GENERIC ERROR HANDLER: ERROR!');
+});
+
+
 // map our apiRouter to the '/api' route
 app.use('/api/movies', apiMoviesRouter);
+
 
 app.listen(PORT, () => {
   console.log('connected babybabybabyuuuuughhh...!');
